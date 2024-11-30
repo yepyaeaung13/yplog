@@ -1,4 +1,4 @@
-import React, { Children, createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const postContext = createContext();
 
@@ -126,10 +126,20 @@ const PostProvider = ({ children }) => {
     localStorage.setItem("POSTS", JSON.stringify(posts));
   }, [posts]);
 
-  const createPost = (data) => {
-    setPosts((currentPosts) => {
-      return [data, ...currentPosts];
+  const createPost = async (data) => {
+    const res = await fetch("http://localhost:8080/api/articles/new", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
     });
+
+    const article = await res.json();
+    console.log(article);
+    // setPosts((currentPosts) => {
+    //   return [data, ...currentPosts];
+    // });
   };
 
   const [filterPost, setFilterPost] = useState(posts);

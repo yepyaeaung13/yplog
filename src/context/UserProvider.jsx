@@ -1,25 +1,33 @@
-import React, { createContext, useEffect, useState } from "react";
-import { redirect } from "react-router-dom";
+import axios from "axios";
+import React, { createContext, useContext, useEffect, useState } from "react";
 export const userContext = createContext();
+
+export const useUser = () => useContext(userContext);
 
 const UserProvider = ({ children }) => {
   const [users, setUsers] = useState(() => {
     const localValue = localStorage.getItem("USERS");
     if (localValue == null) {
-      return [];
+      return {};
     }
     return JSON.parse(localValue);
   });
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("USERS", JSON.stringify(users));
   }, [users]);
 
-  const createNewAccount = (userData) => {
-    setUsers([...users, { ...userData, createdDate: Date().slice(0, 15) }]);
+  const createNewAccount = async (userData) => {
+    const { data } = await axios.post(
+      "http://localhost:8000/api/register",
+      userData
+    );
+    setMessage(data);
   };
-  const [currentLogin, setCurrentLogin] = useState(() => {
-    const localValue = localStorage.getItem("CurrentLogin");
+
+  const [user, setUser] = useState(() => {
+    const localValue = localStorage.getItem("USER");
     if (localValue == null) {
       return null;
     }
@@ -27,35 +35,32 @@ const UserProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    localStorage.setItem("CurrentLogin", JSON.stringify(currentLogin));
-  }, [currentLogin]);
+    localStorage.setItem("USER", JSON.stringify(user));
+  }, [user]);
 
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
 
   const [loginError, setLoginError] = useState(false);
 
-  const userLogin = (user) => {
-    setUsers((currentUsers) => {
-      return currentUsers.map((currentUser) => {
-        if (
-          currentUser.email === user.email &&
-          currentUser.password === user.password
-        ) {
-          setCurrentLogin({ ...currentUser });
-          location.pathname = "/";
-        } else {
-          setLoginError(true);
-        }
-        return currentUser;
-      });
-    });
+  const userLogin = async (userData) => {
+    const { data } = await axios.post(
+      "http://localhost:8000/api/login",
+      userData,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(data);
   };
+
   const userLogout = () => {
     setCurrentLogin(null);
   };
+
   const handleLogout = () => {
     toggleOpen();
     userLogout();
@@ -68,9 +73,10 @@ const UserProvider = ({ children }) => {
         isOpen,
         toggleOpen,
         userLogin,
-        currentLogin,
+        user,
         handleLogout,
         loginError,
+        message,
       }}
     >
       {children}

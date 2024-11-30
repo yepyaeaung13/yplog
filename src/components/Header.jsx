@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 w-full py-3 z-10 bg-containerColor">
+    <header className="w-full py-3 z-10 bg-containerColor">
       <Container>
         <div className="flex justify-between items-center">
           <Link
             to={"/"}
             href=""
-            className="text-white font-bold font-sans text-[1.5rem]"
+            className="text-white font-bold font-sans 2xl:text-5xl text-3xl"
           >
             B<span className="text-secondColor">log</span>
           </Link>

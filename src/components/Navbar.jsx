@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { userContext } from "../context/UserProvider";
 
 const Navbar = () => {
-  const { isOpen, toggleOpen, currentLogin, handleLogout } =
-    useContext(userContext);
+  const { isOpen, toggleOpen, user, handleLogout } = useContext(userContext);
   return (
     <div className="">
       <div
-        className={`items-center gap-2 text-sm ${
-          currentLogin === null ? "flex" : "hidden"
+        className={`items-center gap-2 2xl:text-lg text-sm ${
+          user === null ? "flex" : "hidden"
         }`}
       >
         <Link
@@ -26,9 +25,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div
-        className={`items-center gap-5 ${
-          currentLogin !== null ? "flex" : "hidden"
-        }`}
+        className={`items-center gap-5 ${user !== null ? "flex" : "hidden"}`}
       >
         <Link to={"/create-post"} className="">
           <svg
@@ -75,7 +72,7 @@ const Navbar = () => {
                   fill="#fd8f44"
                 />
               </svg>
-              <span>{currentLogin === null ? "" : currentLogin.name}</span>
+              <span>{user === null ? "" : user?.name}</span>
             </div>
 
             <div

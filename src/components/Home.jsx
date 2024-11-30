@@ -16,7 +16,7 @@ const Home = () => {
             <h1 className="font-bold text-5xl tracking-widest">
               The Simple Blog
             </h1>
-            <span>Your source of graet content</span>
+            <span className="2xl:text-lg">Your source of great content</span>
           </div>
         </Container>
       </section>

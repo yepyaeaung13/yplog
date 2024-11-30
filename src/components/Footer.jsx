@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Container>
       <div className="flex items-center justify-between gap-2 my-10">
-        <span className="text-sm">
+        <span className="2xl:text-lg text-sm">
           &#169; Ye Pyae Aung - All Right Reserved
         </span>
         <div className="flex gap-5 items-center">

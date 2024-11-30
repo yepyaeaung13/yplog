@@ -9,7 +9,7 @@ const Navtab = () => {
   return (
     <section>
       <Container>
-        <ul className="flex gap-5 justify-center my-5">
+        <ul className="flex gap-5 justify-center my-5 2xl:text-lg">
           {tabs.map((tab, idx) => (
             <li
               key={idx}

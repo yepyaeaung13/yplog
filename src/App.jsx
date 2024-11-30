@@ -36,7 +36,7 @@ const App = () => {
                 <Route path="/create-post" element={<CreatePost />}></Route>
                 <Route path="/my-posts" element={<MyPosts />}></Route>
               </Routes>
-              <Footer />
+              {/* <Footer /> */}
             </NavtabProvider>
           </PostProvider>
         </UserProvider>

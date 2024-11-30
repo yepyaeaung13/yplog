@@ -10,20 +10,21 @@ const CreatePost = () => {
   const { createPost } = useContext(postContext);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(data.img[0]);
-    reader.addEventListener("load", () => {
-      const url = reader.result;
-      createPost({ ...data, img: url });
-      location.pathname = "/";
-    });
+    // const reader = new FileReader();
+    // reader.readAsDataURL(data.img[0]);
+    // reader.addEventListener("load", () => {
+    //   const url = reader.result;
+    //   createPost({ ...data, img: url });
+    //   location.pathname = "/";
+    // });
+    createPost(data);
   };
   return (
     <Container>
       <form
         encType="multipart/form-data"
         onSubmit={handleSubmit(onSubmit)}
-        className="md:w-[50vw] border w-[85vw] bg-zinc-50 mx-auto rounded-md p-5 my-2 flex flex-col gap-5"
+        className="md:w-[50vw] border w-full px-3 bg-zinc-50 mx-auto rounded-md p-5 my-2 flex flex-col gap-5"
       >
         <div className="flex justify-center border-b py-2">
           <h1 className="text-xl font-semibold">Create Post</h1>
@@ -49,18 +50,18 @@ const CreatePost = () => {
           name="name"
           value={currentLogin.name}
         />
-        <input
+        {/* <input
           {...register("date")}
           type="hidden"
           name="date"
           value={Date().slice(0, 21)}
-        />
-        <input
+        /> */}
+        {/* <input
           {...register("userImg")}
           type="hidden"
           name="userImg"
           value={"/user.svg"}
-        />
+        /> */}
         <div className="flex flex-col gap-1">
           <label htmlFor="name">Title</label>
           <input
@@ -71,7 +72,7 @@ const CreatePost = () => {
             required
           />
         </div>
-        <div className="flex flex-col gap-1 border-b-2 pb-2">
+        {/* <div className="flex flex-col gap-1 border-b-2 pb-2">
           <label htmlFor="category">Category</label>
           <select
             {...register("category")}
@@ -82,7 +83,7 @@ const CreatePost = () => {
             <option value="Mobile">Mobile</option>
             <option value="Design">Design</option>
           </select>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-1">
           <label htmlFor="content">Content</label>
           <textarea
@@ -94,7 +95,7 @@ const CreatePost = () => {
             required
           ></textarea>
         </div>
-        <div className="flex flex-col gap-1">
+        {/* <div className="flex flex-col gap-1">
           <label htmlFor="photo">Photo</label>
           <input
             {...register("img")}
@@ -104,7 +105,7 @@ const CreatePost = () => {
             className="border border-zinc-400 rounded-md focus:outline-none px-2 py-1"
             required
           />
-        </div>
+        </div> */}
         <div className="flex justify-center">
           <button
             type="submit"
