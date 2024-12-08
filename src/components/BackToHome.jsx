@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const BackToHome = () => {
   return (
-    <div className="group absolute top-3 cursor-pointer left-0 flex text-secondColor font-medium hover:text-containerColor duration-200">
-      <Link to={"/"} className="flex gap-2">
+    <div className="group absolute max-sm:left-3 top-5 cursor-pointer left-0 flex text-secondColor font-medium hover:text-containerColor duration-200">
+      <Link to={"/"} className="flex gap-2 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -17,7 +17,7 @@ const BackToHome = () => {
             className="group-hover:fill-containerColor duration-200"
           />
         </svg>
-        <span className="text-sm">back to Home</span>
+        <span className="text-sm">back</span>
       </Link>
     </div>
   );

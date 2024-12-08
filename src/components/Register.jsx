@@ -22,17 +22,21 @@ const Register = () => {
   return (
     <Container>
       <BackToHome />
-      <div className="flex justify-center">
-        <div className="flex py-10 w-2/3">
-          <div className="w-2/3 p-5 rounded-xl flex justify-center bg-containerColor shadow-2xl">
-            <img src={registerBg} alt="background image" className="" />
+      <div className="flex justify-center max-sm:pt-5">
+        <div className="flex md:flex-row flex-col py-8 md:w-2/3 w-full">
+          <div className="md:w-2/3 w-full max-sm:h-60 md:p-5 p-3 rounded-xl flex md:justify-center justify-between items-center bg-containerColor md:shadow-2xl">
+            <div className="md:hidden text-white space-y-3">
+              <h1 className="text-lg font-bold">Create a new account</h1>
+              <p className="text-sm">Enter your details</p>
+            </div>
+            <img src={registerBg} alt="background image" className="h-2/3" />
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-2 w-2/3 text-md mx-auto border border-zinc-300 rounded-xl p-5 shadow-xl"
+            className="flex flex-col gap-2 md:w-2/3 w-full text-md mx-auto md:border border-zinc-300 rounded-xl p-5 md:shadow-xl"
           >
-            <div className="flex flex-col items-center border-b pb-5">
-              <h1 className="text-lg text-secondColor font-semibold font-serif">
+            <div className="hidden md:flex flex-col items-center border-b pb-5">
+              <h1 className="text-lg text-orange-500 font-semibold font-serif">
                 Create a new account
               </h1>
               <span className="text-sm">Enter your details to register</span>
@@ -52,6 +56,7 @@ const Register = () => {
                 {...register("name")}
                 type="text"
                 id="name"
+                placeholder="enter your name"
                 className="focus:border-orange-500 duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
                 required
               />
@@ -62,6 +67,7 @@ const Register = () => {
                 {...register("email")}
                 type="email"
                 id="email"
+                placeholder="enter your email"
                 className="focus:border-orange-500 duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
                 required
               />
@@ -73,6 +79,7 @@ const Register = () => {
                 {...register("password")}
                 type="Password"
                 id="password"
+                placeholder="enter your password"
                 minLength={8}
                 className="focus:border-orange-500 duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
                 required
@@ -87,6 +94,7 @@ const Register = () => {
                 {...register("confirmPassword")}
                 type="Password"
                 id="confirmPassword"
+                placeholder="enter your confirm password"
                 minLength={8}
                 className="focus:border-orange-500 duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
                 required
@@ -100,7 +108,9 @@ const Register = () => {
 
             <div className="flex gap-5">
               <div className="flex flex-col gap-1 text-sm border-b-2 pb-2 w-1/2">
-                <label htmlFor="gender">Gender</label>
+                <label htmlFor="gender" title="choose gender">
+                  Gender
+                </label>
                 <select
                   {...register("gender")}
                   className="flex gap-3 text-sm bg-white outline-none"
@@ -110,7 +120,9 @@ const Register = () => {
                 </select>
               </div>
               <div className="flex flex-col gap-1 text-sm border-b-2 pb-2 w-1/2">
-                <label htmlFor="birthDate">Birth Date</label>
+                <label htmlFor="birthDate" title="choose birth date">
+                  Birth Date
+                </label>
                 <input
                   {...register("birthDate")}
                   type="date"
@@ -136,7 +148,7 @@ const Register = () => {
             <div className="flex flex-col items-center justify-center gap-2">
               <button
                 type="submit"
-                className="bg-secondColor w-80 py-1 text-white rounded-md active:scale-95 duration-200"
+                className="bg-orange-400 hover:bg-orange-500 w-80 py-1 text-white rounded-md active:scale-95 duration-200"
               >
                 Register
               </button>

@@ -9,23 +9,24 @@ import loginBg from "../assets/login.svg";
 const Login = () => {
   const { userLogin, loginError, message } = useUser();
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
     userLogin(data);
   };
   return (
     <Container>
       <BackToHome />
-      <div className="w-full flex justify-center">
-        <div className="flex py-10 w-2/3">
-          <div className="w-full bg-containerColor rounded-xl flex items-center p-2 shadow-2xl">
+      <div className="w-full h-dvh flex flex-col md:justify-center items-center">
+        <div className="flex md:flex-row flex-col py-10 md:w-2/3 w-full mt-5">
+          <div className="w-full bg-containerColor rounded-xl flex items-center p-2 md:shadow-2xl">
             <img src={loginBg} alt="background image" className="" />
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-5 w-96 text-md mx-auto border border-zinc-300 rounded-xl px-5 py-10 shadow-xl"
+            className="flex flex-col gap-5 w-96 text-md mx-auto md:border border-zinc-300 rounded-xl px-5 py-10 md:shadow-xl"
           >
             <div className="flex flex-col items-center">
-              <h1 className="text-xl text-secondColor font-medium font-serif">
+              <h1 className="text-xl text-orange-500 font-medium font-serif">
                 Welcome back
               </h1>
               <span className="text-sm">
@@ -39,7 +40,8 @@ const Login = () => {
                   {...register("email")}
                   type="email"
                   id="email"
-                  className="focus:border-secondColor duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
+                  placeholder="enter your email"
+                  className="focus:border-orange-500 duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
                   required
                 />
               </div>
@@ -49,7 +51,8 @@ const Login = () => {
                   {...register("password")}
                   type="Password"
                   id="password"
-                  className="focus:border-secondColor duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
+                  placeholder="enter your password"
+                  className="focus:border-orange-500 duration-200 border border-zinc-400 rounded-md outline-none px-2 py-1"
                   required
                 />
                 <span
@@ -73,7 +76,10 @@ const Login = () => {
                   </label>
                 </div>
                 <div>
-                  <a href="" className="underline cursor-pointer">
+                  <a
+                    href="/forget-password"
+                    className="underline cursor-pointer"
+                  >
                     Forget password?
                   </a>
                 </div>
@@ -82,7 +88,7 @@ const Login = () => {
             <div className="flex flex-col items-center justify-center gap-2 mt-4">
               <button
                 type="submit"
-                className="active:scale-95 duration-200 bg-secondColor w-80 py-1 text-white font-medium rounded-md"
+                className="hover:bg-orange-500 active:scale-95 duration-200 bg-orange-400 w-80 py-1 text-white font-medium rounded-md"
               >
                 Login
               </button>

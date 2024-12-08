@@ -1,27 +1,29 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { userContext } from "../context/UserProvider";
+import IconLoginArrow from "./icons/IconLoginArrow";
 
 const Navbar = () => {
   const { isOpen, toggleOpen, user, handleLogout } = useContext(userContext);
   return (
-    <div className="">
+    <div className="flex">
       <div
         className={`items-center gap-2 2xl:text-lg text-sm ${
           user === null ? "flex" : "hidden"
         }`}
       >
-        <Link
+        {/* <Link
           to={"/register"}
           className="border uppercase px-3 py-1 rounded-md text-white border-secondColor"
         >
-          register
-        </Link>
+          register  
+        </Link> */}
         <Link
           to={"/login"}
-          className="bg-secondColor border uppercase border-secondColor px-3 py-1 rounded-md text-white"
+          className="bg-secondColor flex items-center gap-1 border uppercase border-secondColor px-3 py-1 rounded-md text-white"
         >
           login
+          <IconLoginArrow />
         </Link>
       </div>
       <div

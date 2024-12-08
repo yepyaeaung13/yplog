@@ -10,11 +10,14 @@ const Post = () => {
   }, []);
   return (
     <div>
-      <div className="bg-containerColor h-[320px]"></div>
+      <div className="bg-containerColor/95 h-[320px]"></div>
       <Container>
         <div className="-mt-80 md:w-[75%] w-[100%] mx-auto">
-          <div className="flex justify-center text-secondColor font-medium mt-2">
-            <Link to={"/"} className="flex gap-2">
+          <div className="font-medium mt-2">
+            <Link
+              to={"/"}
+              className="flex gap-2 group text-secondColor hover:text-white duration-200"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
@@ -24,6 +27,7 @@ const Post = () => {
                 <path
                   d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
                   fill="#fd8f44"
+                  className="group-hover:fill-white duration-200"
                 />
               </svg>
               <span className="text-sm">back to Home</span>
@@ -46,8 +50,8 @@ const Post = () => {
             <div className="flex flex-col gap-2">
               <h2 className="text-secondColor">{post.category}</h2>
 
-              <span className="text-sm">{post.date}</span>
-              <p className="text-md line-clamp-2 overflow-hidden">
+              <span className="text-xs">{post.date}</span>
+              <p className="text-sm line-clamp-2 overflow-hidden">
                 {post.content}
               </p>
               <div className="flex gap-2 items-center text-sm font-medium">

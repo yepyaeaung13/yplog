@@ -1,8 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 export const postContext = createContext();
 
 const PostProvider = ({ children }) => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const category = params.get("category") || "All";
   const [posts, setPosts] = useState(() => {
     const localValue = localStorage.getItem("POSTS");
     if (localValue === null) {
@@ -144,15 +148,19 @@ const PostProvider = ({ children }) => {
 
   const [filterPost, setFilterPost] = useState(posts);
 
-  const handleFilter = (category) => {
-    if (category === "All") {
-      setFilterPost(posts);
-    } else {
-      setFilterPost(() => {
-        return posts.filter((post) => post.category === category);
-      });
+  useEffect(() => {
+    if (category) {
+      if (category.toLowerCase() === "all") {
+        setFilterPost(posts);
+      } else {
+        setFilterPost(() => {
+          return posts.filter(
+            (post) => post.category.toLowerCase() === category.toLowerCase()
+          );
+        });
+      }
     }
-  };
+  }, [category]);
 
   const [post, setPost] = useState();
 
@@ -161,7 +169,7 @@ const PostProvider = ({ children }) => {
   };
   return (
     <postContext.Provider
-      value={{ posts, filterPost, handleFilter, post, handlePost, createPost }}
+      value={{ posts, filterPost, post, handlePost, createPost }}
     >
       {children}
     </postContext.Provider>

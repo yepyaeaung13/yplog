@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import NavtabProvider from "./context/NavtabProvider";
@@ -14,15 +14,23 @@ import RegisterSuccess from "./components/RegisterSuccess";
 import Profile from "./components/Profile";
 import CreatePost from "./components/CreatePost";
 import MyPosts from "./components/MyPosts";
+import MobileMenu from "./components/MobileMenu";
 
 const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="font-sans">
       <BrowserRouter>
         <UserProvider>
           <PostProvider>
             <NavtabProvider>
-              <Header />
+              <Header handleOpen={handleOpen} />
+              {isOpen && <MobileMenu handleOpen={handleOpen} />}
               <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/post" element={<Post />}></Route>
